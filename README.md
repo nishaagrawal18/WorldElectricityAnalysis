@@ -3,9 +3,6 @@
 # 🌍 World Electricity Analysis 📊
 
 </div>
-
-<div align="center">
-  <img src="project_logo.png" alt="Project Logo" width="200">
 </div>
 
 <br>
