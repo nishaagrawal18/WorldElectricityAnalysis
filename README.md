@@ -72,7 +72,7 @@
 <br>
 
 <div align="center">
-  <img src="C:/Users/91767/OneDrive/Pctures/Screenshots/dashboard screenshot.png" alt="Screenshot 3" width="600">
+  <img src="https://drive.google.com/file/d/1O7CbDKADY154p9LWBzbCEoOc2Tibr3Wh/view?usp=sharing" alt="Screenshot 3" width="600">
 </div>
 
 <br>
