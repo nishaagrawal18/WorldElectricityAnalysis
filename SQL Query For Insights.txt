@@ -1,0 +1,155 @@
+--Insight 1
+--Comparison of access to electricity post 2000s in different countries
+
+select country_name, avg(access_percent) as Avg_Access_post_2000  from (
+select country_name, Year, accsess as access_percent from (
+select Country_Name, [Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015], [Y2016], [Y2017], [Y2018], [Y2019], [Y2020]
+from TotalAccess ) as a
+unpivot                     ---unpivot is used to convert data columns to rows for performing aggregations
+(accsess for [Year] in 
+    ([Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015], [Y2016], [Y2017], [Y2018], [Y2019], [Y2020])
+) as unpvt ) as x
+group by country_name
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Insight 2
+--Find one interesting insight present in the data (across all the tables) 
+
+select country_name, Year, accsess as access_percent from (
+select Country_Name, [Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015], [Y2016], [Y2017], [Y2018], [Y2019], [Y2020]
+from TotalAccess ) as a
+unpivot                       ---unpivot is used to convert data columns to rows for performing aggregations
+(accsess for [Year] in 
+    ([Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015], [Y2016], [Y2017], [Y2018], [Y2019], [Y2020])
+) as unpvt 
+where Country_Name like 'India'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Insight 3
+--Present a way to compare every country’s performance with respect to world average for every year.
+--As in, if someone wants to check how is the accessibility of electricity in India
+--in 2006 as compared to average access of the world to electricity 
+
+select *,
+Avg (access_percent) over (partition by year ) as World_Avg_per_year,
+((access_percent/Avg (access_percent) over (partition by year ))*100) as Access_Compare_To_World_AVG
+from (
+select country_name, Year, accsess as access_percent from (
+select Country_Name, [Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015], [Y2016], [Y2017], [Y2018], [Y2019], [Y2020]
+from TotalAccess ) as a
+unpivot                       ---unpivot is used to convert data columns to rows for performing aggregations
+(accsess for [Year] in 
+    ([Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015], [Y2016], [Y2017], [Y2018], [Y2019], [Y2020])
+) as unpvt ) as x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Insight 4
+--A chart to depict the increase in count of country with greater than 75% electricity 
+--access in rural areas across different year. For example, what was the count of countries
+--having ≥75% rural electricity access in 2000 as compared to 2010. 
+
+select Year, count(Country_Name) as Count_of_countries from (
+select country_name, Year, accsess as access_percent from (
+select Country_Name, [Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015], [Y2016], [Y2017], [Y2018], [Y2019], [Y2020]
+from RuralAccess ) as a
+unpivot                      ---unpivot is used to convert data columns to rows for performing aggregations
+(accsess for [Year] in 
+    ([Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015], [Y2016], [Y2017], [Y2018], [Y2019], [Y2020])
+) as unpvt ) as x
+where access_percent  >= 75
+group by Year
+order by Year
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Insight 6
+--A chart to present the production of electricity across different sources (nuclear, oil, etc.) as a function of time
+
+select  n.Year, Avg(n.production_percent) as production_percent_from_nuclear, Avg(o.production_percent) as production_percent_from_oil,
+(100- Avg(n.production_percent)- Avg(o.production_percent)) as production_percent_from_other
+from (
+select y.Country_Name, y.Year, production as production_percent from (
+select Country_Name, [Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015]
+from nuclear_sources ) as a
+unpivot                       ---unpivot is used to convert data columns to rows for performing aggregations
+(production for [Year] in 
+    ([Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015])
+) as y ) as n
+
+join  ---Joining nuclear source data and oil source data
+
+(select country_name, Year, production as production_percent from (
+select Country_Name, [Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015]
+from Oil_sources ) as a
+unpivot             ---unpivot is used to convert data columns to rows for performing aggregations
+(production for [Year] in 
+    ([Y2000], [Y2001], [Y2002], [Y2003], [Y2004], [Y2005], [Y2006], [Y2007], [Y2008], [Y2009], [Y2010]
+, [Y2011], [Y2012], [Y2013], [Y2014], [Y2015])
+) as x ) o
+on n.Country_Name =o.Country_Name
+where n.Country_Name =o.Country_Name and n.Year = o.Year
+group by n.Year
+order by n.Year
