@@ -3,7 +3,6 @@
 # 🌍 World Electricity Analysis 📊
 
 </div>
-</div>
 
 <br>
 
@@ -14,11 +13,14 @@
 <br>
 
 <div align="center">
-  <img src="screenshots/screenshot1.png" alt="Screenshot 1" width="400">
-  <img src="screenshots/screenshot2.png" alt="Screenshot 2" width="400">
+  <a href="https://drive.google.com/file/d/1zv-txap8iQNh8fsEFD555JyOXU00xX-s/view?usp=sharing">
+    <img src="https://drive.google.com/uc?export=view&id=1zv-txap8iQNh8fsEFD555JyOXU00xX-s" alt="Screenshot" width="1000">
+  </a>
 </div>
 
 <br>
+
+---
 
 ## 📚 User's Manual
 
@@ -31,7 +33,7 @@
 | 📂 Raw Data Files              | This folder provides the raw data for the analysis.                |
 | 📂 Final CSV Files             | This folder provides the final CSV files after the data cleaning.  |
 
-<br>
+---
 
 ## 📊 Analysis
 
@@ -45,14 +47,14 @@
 - **Electricity Production**: Analyzed the production of electricity across different sources (nuclear, oil, etc.) over time.
 - **Regional Averages**: Calculated the average electrification of countries in different regions.
 
-<br>
+---
 
 ## 📚 Prior Knowledge
 
 - **Language**: SQL, Microsoft SQL Server
 - **Python Libraries**: pandas
 
-<br>
+---
 
 ## 🚀 Quick Start
 
@@ -66,13 +68,13 @@
 8. Implement useful drop-downs to fetch the required data, such as the count of countries with 75% electrification over the years or country-wise electricity data.
 9. Create a PowerPoint presentation with all the insights and conclusions listed, along with in-depth analysis.
 
-<br>
+---
 
 <div align="center">
   <img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81obrIlE1Y64zKq3AXBzCMuHZqGvH7UG7Mn2lXpc5iQhO6Hl8D15jEoadZIRU3EQv74SnEmBPK4S-K-O788udxysSZ3x=w2880-h1642" alt="Screenshot 3" width="1000">
 </div>
 
-<br>
+---
 
 ## 📝 Conclusion
 
@@ -83,19 +85,4 @@
 - Countries emphasizing tourism and facing geographical and demographic constraints have seen the highest growth rate of electrification in the last two decades.
 - Higher-income regions have been at the forefront of increasing renewable energy production, along with nuclear sources, while middle and lower-middle-income countries are gradually following suit.
 
-<br>
-
-<div align="center">
-  <img src="screenshots/screenshot4.png" alt="Screenshot 4" width="600">
-</div>
-
-<br>
-
-## 📷 Screenshots
-
-<div align="center">
-  <img src="screenshots/screenshot5.png" alt="Screenshot 5" width="600">
-  <img src="screenshots/screenshot6.png" alt="Screenshot 6" width="600">
-</div>
-
-<br>
+---  
