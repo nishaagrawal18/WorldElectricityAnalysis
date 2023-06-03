@@ -72,7 +72,7 @@
 <br>
 
 <div align="center">
-  <img src="https://drive.google.com/file/d/1O7CbDKADY154p9LWBzbCEoOc2Tibr3Wh/view?usp=sharing" alt="Screenshot 3" width="600">
+  <img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81obrIlE1Y64zKq3AXBzCMuHZqGvH7UG7Mn2lXpc5iQhO6Hl8D15jEoadZIRU3EQv74SnEmBPK4S-K-O788udxysSZ3x=w2880-h1642" alt="Screenshot 3" width="1000">
 </div>
 
 <br>
